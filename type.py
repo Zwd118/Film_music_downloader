@@ -38,18 +38,21 @@ class TypeOne:  # 选择类型: 影视
 
 class TypeTwo:  # 选择类型: 音乐
     def __init__(self):
-        pass
+        #  在共享模块中获取数据
+        self.shared = share.SharedData()
+        self.line = self.shared.get('line_sure')
+        print('到这里线路:', self.line)
         # self.line_url = 'https://www.gequbao.com/s/'  # (放屁网和歌曲宝)音乐暂时三个选一样,以后找到好的,再替换上
         # self.films, self.html_primary, self.line_url, self.h_name = get_film_nameyy(self.line_url,self.sun_url)  # 待完成
 
     def line_one(self):
-        pass
+        print('到这里线路1:', self.line)
 
     def line_two(self):
-        pass
+        print('到这里线路2:', self.line)
 
     def line_three(self):
-        pass
+        print('到这里线路3:', self.line)
 
 
 class TypeThree:  # 选择类型: 文件

@@ -18,6 +18,7 @@ class Controls(Frame):
 
     def get_film(self):  # 获取影片名字
         self.name = self.shared.get('search_name').get()  # 要搜索的影片,音乐,文件关键字
+        self.frame_2 = self.shared.get('frame_2')
         if self.name:
             self.film_type_sure = self.shared.get('film_type').current() + 1  # (1)选择类型 最终用self.film_type_sure表示
             self.line_sure = self.shared.get('line').current() + 1  # (3)线路选择
@@ -27,7 +28,14 @@ class Controls(Frame):
 
             if self.film_type_sure == 1:  # 影视类型 (网上搜:影视资源,会出来很多网站供选择使用于线路)
                 type.TypeOne()
-            elif self.film_type_sure == 2 and self.line_sure == 1 or self.line_sure == 2 or self.line_sure == 3:  # 音乐类型
+            elif self.film_type_sure == 2:  # 音乐类型
+                print('到这里类型:',self.film_type_sure)
                 type.TypeTwo()
-            elif self.film_type_sure == 3 and self.line_sure == 1 or self.line_sure == 2 or self.line_sure == 3:  # 文件类型
+            elif self.film_type_sure == 3:  # 文件类型
                 type.TypeThree()
+        else:
+            # 先删除frame_2里的子控件
+            self.frame_2.pack()
+            for widget in self.frame_2.winfo_children():
+                widget.destroy()
+            Label(self.frame_2, text='请输入搜索内容!', font=('思源宋体', 18), fg='red').pack()
